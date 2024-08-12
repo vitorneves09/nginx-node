@@ -9,7 +9,9 @@ RUN  apt-get install -y wget \
     && wget -O - https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz | tar xzf - -C /usr/local/bin \
     && apt-get autoremove -yqq --purge wget && rm -rf /var/lib/apt/lists/*
 
-EXPOSE 3000
+# Instale as dependências
+RUN npm install --frozen-lockfile
 
+EXPOSE 3000
 
 ENTRYPOINT  [ "node", "src/index.js" ]
